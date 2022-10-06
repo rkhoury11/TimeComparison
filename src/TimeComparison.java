@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import sort.Sort;
 
 public class TimeComparison {
     
@@ -61,53 +62,53 @@ public class TimeComparison {
         return null;
     }
 
-    public static void bubbleSort(int[] array){
+    // public static void bubbleSort(int[] array){
         
-        for (int i = array.length - 1; i > 0; i--){
-            for (int j = 0; j < i; j++){
-                if (array[j] > array[j+1]){
-                    int temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
-                }
-            }            
-        }
-    }
+    //     for (int i = array.length - 1; i > 0; i--){
+    //         for (int j = 0; j < i; j++){
+    //             if (array[j] > array[j+1]){
+    //                 int temp = array[j];
+    //                 array[j] = array[j+1];
+    //                 array[j+1] = temp;
+    //             }
+    //         }            
+    //     }
+    // }
 
-    public static int[] merge(int[] array1, int[] array2) {
-        int[] mergedArray = new int[array1.length + array2.length];
-        int i = 0, j = 0, k = 0;
-        while (j < array1.length && k < array2.length) {
-            if (array1[j] <= array2[k]) {
-                mergedArray[i++] = array1[j++];
-            }else {
-                mergedArray[i++] = array2[k++];
-            }
-        }
-        while (j < array1.length) {
-            mergedArray[i++] = array1[j++];
-        }
-        while (k < array2.length){
-            mergedArray[i++] = array2[k++];
-        }
-        return mergedArray;
-    }
+    // public static int[] merge(int[] array1, int[] array2) {
+    //     int[] mergedArray = new int[array1.length + array2.length];
+    //     int i = 0, j = 0, k = 0;
+    //     while (j < array1.length && k < array2.length) {
+    //         if (array1[j] <= array2[k]) {
+    //             mergedArray[i++] = array1[j++];
+    //         }else {
+    //             mergedArray[i++] = array2[k++];
+    //         }
+    //     }
+    //     while (j < array1.length) {
+    //         mergedArray[i++] = array1[j++];
+    //     }
+    //     while (k < array2.length){
+    //         mergedArray[i++] = array2[k++];
+    //     }
+    //     return mergedArray;
+    // }
 
-    public static int[] mergeSort(int[] array) {
-        if (array.length <= 1) {
-            return array;
-        }
+    // public static int[] mergeSort(int[] array) {
+    //     if (array.length <= 1) {
+    //         return array;
+    //     }
         
-        int arrayLength1 = array.length / 2;
-        int [] array1 = Arrays.copyOfRange(array, 0, arrayLength1);
-        int [] array2 = Arrays.copyOfRange(array, arrayLength1, array.length);
-        array1 = mergeSort(array1);
-        array2 = mergeSort(array2);
-        int [] mergedArray = merge(array1, array2);
+    //     int arrayLength1 = array.length / 2;
+    //     int [] array1 = Arrays.copyOfRange(array, 0, arrayLength1);
+    //     int [] array2 = Arrays.copyOfRange(array, arrayLength1, array.length);
+    //     array1 = mergeSort(array1);
+    //     array2 = mergeSort(array2);
+    //     int [] mergedArray = merge(array1, array2);
 
-        return mergedArray;
+    //     return mergedArray;
         
-    }
+    // }
 
     public static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
@@ -138,14 +139,14 @@ public class TimeComparison {
             System.out.println();
             startTime = System.currentTimeMillis();
             // printArray(array);
-            int [] sortedArray = mergeSort(array);
+            int [] sortedArray = Sort.mergeSort(array);
             System.out.printf("Merge sort integer array of length %d is %.2f s", arrayLength, (System.currentTimeMillis() - startTime) / 1000.0);
             System.out.println();
             // printArray(sortedArray);
             System.out.println("The sorted array is in correct order: " + isSorted(sortedArray));
             System.out.println();
             startTime = System.currentTimeMillis();
-            bubbleSort(array);
+            Sort.bubbleSort(array);
             System.out.printf("Bubble sort integer array of length %d is %.2f s", arrayLength, (System.currentTimeMillis() - startTime) / 1000.0);
             System.out.println();
             System.out.println("Merge sort and bubble sort generate the same result: " + Arrays.equals(sortedArray, array));
